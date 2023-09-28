@@ -5,7 +5,7 @@ export ETH_RPC_URL=
 export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 
 # Set IMPL_SALT to a random bytes32 hex string
-export IMPL_SALT=0xdb6d...random.bytes256...5303
+export IMPL_SALT=0xdb6d...random.bytes32...5303
 
 # Name of the deployed network
 export DEPLOYMENT_CONTEXT=getting-started
