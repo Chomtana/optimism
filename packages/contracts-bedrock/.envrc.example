@@ -10,3 +10,5 @@ export DEPLOYMENT_CONTEXT=getting-started
 # Optional Tenderly details for a simulation link during deployment
 export TENDERLY_PROJECT=
 export TENDERLY_USERNAME=
+
+export IMPL_SALT=0xdb6d6f2cbcea5fa68ed524fd874f2a0571aa8a85537b56accacb660e17de5303
