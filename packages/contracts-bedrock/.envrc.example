@@ -4,12 +4,12 @@ export ETH_RPC_URL=
 # Set the deployer's key to match the first default hardhat account
 export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 
-# Set IMPL_SALT to a random bytes32 hex string
-export IMPL_SALT=0xdb6d...random.bytes32...5303
-
 # Name of the deployed network
 export DEPLOYMENT_CONTEXT=getting-started
 
 # Optional Tenderly details for a simulation link during deployment
 export TENDERLY_PROJECT=
 export TENDERLY_USERNAME=
+
+# Optional IMPL_SALT for deterministic deployment across superchain
+export IMPL_SALT=
