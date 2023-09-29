@@ -11,5 +11,5 @@ export DEPLOYMENT_CONTEXT=getting-started
 export TENDERLY_PROJECT=
 export TENDERLY_USERNAME=
 
-# Optional IMPL_SALT for deterministic deployment across superchain
+# Optional create2 salt for deterministic deployment across superchain
 export IMPL_SALT=
