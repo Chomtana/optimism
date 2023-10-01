@@ -96,12 +96,8 @@ contract Deploy is Deployer {
     /// @notice The create2 salt used for deployment of the contract implementations.
     ///         Using this helps to reduce config across networks as the implementation
     ///         addresses will be the same across networks when deployed with create2.
-    function implSalt() public returns (bytes32 salt) {
-        string memory IMPL_SALT = vm.envOr("IMPL_SALT", string("ethers phoenix"));
-        salt = keccak256(bytes(IMPL_SALT));
-        if (salt == keccak256(bytes("ethers phoenix"))) {
-            salt = keccak256(abi.encode(cfg.finalSystemOwner(), cfg.l1StartingBlockTag(), cfg.l2ChainID()));
-        }
+    function implSalt() public returns (bytes32) {
+        return keccak256(bytes(vm.envOr("IMPL_SALT", string("ethers phoenix"))));
     }
 
     /// @notice Modifier that wraps a function in broadcasting.

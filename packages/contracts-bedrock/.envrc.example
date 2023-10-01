@@ -1,7 +1,7 @@
 # RPC for the network to deploy to
 export ETH_RPC_URL=
 
-# Set the deployer's key to match the first default hardhat account
+# Sets the deployer's key to match the first default hardhat account
 export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 
 # Name of the deployed network
@@ -10,6 +10,3 @@ export DEPLOYMENT_CONTEXT=getting-started
 # Optional Tenderly details for a simulation link during deployment
 export TENDERLY_PROJECT=
 export TENDERLY_USERNAME=
-
-# Optional create2 salt for deterministic deployment across superchain
-export IMPL_SALT=
