@@ -90,11 +90,11 @@ services:
       GETH_HTTP_CORSDOMAIN: "*"
       GETH_HTTP_VHOSTS: "*"
       GETH_HTTP_ADDR: "0.0.0.0"
-      GETH_HTTP_PORT: "8545"
+      GETH_HTTP_PORT: 8545
       GETH_HTTP_API: "web3,debug,eth,txpool,net,engine"
       GETH_WS: "true"
       GETH_WS_ADDR: "0.0.0.0"
-      GETH_WS_PORT: "8546"
+      GETH_WS_PORT: 8546
       GETH_WS_ORIGINS: "*"
       GETH_WS_API: "debug,eth,txpool,net,engine"
       GETH_SYNCMODE: "full"
@@ -103,13 +103,13 @@ services:
       GETH_NETWORKID: "${CHAIN_ID}"
       GETH_RPC_ALLOW_UNPROTECTED_TXS: "true"
       GETH_AUTHRPC_ADDR: "0.0.0.0"
-      GETH_AUTHRPC_PORT: "8551"
+      GETH_AUTHRPC_PORT: 8551
       GETH_AUTHRPC_VHOSTS: "*"
       GETH_AUTHRPC_JWTSECRET: "/config/jwt-secret.txt"
       GETH_GCMODE: "archive"
       GETH_METRICS: "true"
       GETH_METRICS_ADDR: "0.0.0.0"
-      GETH_METRICS_PORT: "6060"
+      GETH_METRICS_PORT: 6060
 
   op-node:
     depends_on:
@@ -122,30 +122,6 @@ services:
       args:
         OP_STACK_GO_BUILDER: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-stack-go:devnet
     image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:devnet
-    command: >
-      op-node
-      --l1=ws://l1:8546
-      --l2=http://l2:8551
-      --l2.jwt-secret=/config/test-jwt-secret.txt
-      --sequencer.enabled
-      --sequencer.l1-confs=0
-      --verifier.l1-confs=0
-      --p2p.sequencer.key=8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba
-      --rollup.config=/rollup.json
-      --rpc.addr=0.0.0.0
-      --rpc.port=8545
-      --p2p.listen.ip=0.0.0.0
-      --p2p.listen.tcp=9003
-      --p2p.listen.udp=9003
-      --p2p.scoring.peers=light
-      --p2p.ban.peers=true
-      --snapshotlog.file=/op_log/snapshot.log
-      --p2p.priv.path=/config/p2p-node-key.txt
-      --metrics.enabled
-      --metrics.addr=0.0.0.0
-      --metrics.port=7300
-      --pprof.enabled
-      --rpc.enable-admin
     ports:
       - "7545:8545"
       - "9003:9003"
@@ -157,6 +133,29 @@ services:
       - "${PWD}/test-jwt-secret.txt:/config/test-jwt-secret.txt"
       - "${PWD}/../.devnet/rollup.json:/rollup.json"
       - op_log:/op_log
+    environment:
+      OP_NODE_L1_ETH_RPC: "ws://l1:8546"
+      OP_NODE_L2_ENGINE_RPC: "http://l2:8551"
+      OP_NODE_L2_ENGINE_AUTH: "/config/test-jwt-secret.txt"
+      OP_NODE_SEQUENCER_ENABLED: "true"
+      OP_NODE_SEQUENCER_L1_CONFS: "0"
+      OP_NODE_VERIFIER_L1_CONFS: "0"
+      OP_NODE_P2P_SEQUENCER_KEY: "8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba"
+      OP_NODE_ROLLUP_CONFIG: "/rollup.json"
+      OP_NODE_RPC_ADDR: "0.0.0.0"
+      OP_NODE_RPC_PORT: 8545
+      OP_NODE_P2P_LISTEN_IP: "0.0.0.0"
+      OP_NODE_P2P_LISTEN_TCP_PORT: 9003
+      OP_NODE_P2P_LISTEN_UDP_PORT: 9003
+      OP_NODE_P2P_PEER_SCORING: "light"
+      OP_NODE_P2P_PEER_BANNING: "true"
+      OP_NODE_SNAPSHOT_LOG: "/op_log/snapshot.log"
+      OP_NODE_P2P_PRIV_PATH: "/config/p2p-node-key.txt"
+      OP_NODE_METRICS_ENABLED: "true"
+      OP_NODE_METRICS_ADDR: "0.0.0.0"
+      OP_NODE_METRICS_PORT: 7300
+      OP_NODE_PPROF_ENABLED: "true"
+      OP_NODE_RPC_ENABLE_ADMIN: "true"
 
   op-proposer:
     depends_on:
